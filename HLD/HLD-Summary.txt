@@ -1,0 +1,259 @@
+Keywords:
+    - Consistency (Strong vs Eventual) vs Availability (Fault tolerant, CI/CD features, etc together make system highly available)
+    - Scalability: 
+        - (It is inversely proportional to consistency and reason for this: Refer ACID section)
+        - It is directly proportional to high availability which results in high throughput also
+    - Reliability
+    - 
+
+What should be the thought process:
+    - See the data if you need transaction support(ACID) and data integrity. Go with SQL otherwise go with NoSQL.
+    - Consistency with SQL database
+    - Consistency with NoSQL database
+    - Availability with SQL database: Not possible. If we choose SQL, then transaction management become complex in distributed system in case of: 
+        - network partition 
+        - Increased latency (Indirectly as it leads to request timeout)
+    - Availability with NoSQL database
+
+1. How system grows?
+    - Increase number of users
+    - Increase features of system
+    - Increse complexity of system
+    - Increase in data
+    - Deployment in more geographics location
+
+2. Scalability:
+    - Load Balancing
+        - Client side - DNS, Route53 -> Multi region depolyment
+        - Server side - ALB, NLB
+        - Partitioning 
+         
+    - Architecture 
+        -  Microservice
+        -  Asynchronous Communication
+        -  Auto Scaling groups
+
+    - Caching
+        - Helps in faster access of most frequently used data from in memory cache. Ex. Memcache, Redis
+        - Content delivery network (CDN) Ex CloudFront: Caching in networking refers to the process of storing frequently accessed data geographically closer to the user. For example, you can store data in proxy servers or content delivery networks (CDNs).
+
+
+
+3. Throughput & Latency: 
+    - Latency: Latency determines the delay that a user experiences when they send or receive data from the network. 
+    - Throughput: Throughput determines the number of users that can access the network at the same time. 
+
+    - Summary of differences: 
+        - What does it measure?
+            - Throughput: Throughput measures the volume of data that passes through a network in a given period.
+            Throughput impacts how much data you can transmit in a period of time.
+            - Latency: Latency measures the time delay when sending data. A higher latency causes a network delay.
+
+        - How to measure?
+            - Throughput: Manually calculate throughput by sending a file or using network testing tools.
+            - Latency: Calculate latency by using ping times.
+
+        - Unit of measurement
+            - Throughput: Megabytes per second (MBps).
+            - Latency: Milliseconds (ms).
+
+        - Impacting factors
+            - Throughput: Bandwidth, network processing power, packet loss, and network topology.
+            - Latency: Geographical distances, network congestion, transport protocol, and network infrastructure. 
+    
+    - UDP protocol has minimal latency and high throughput.
+    - TCP protocol has higher latency and low throughput.
+
+
+    
+4. CAP theorem: [Consistency, Availability and Partition tolerance]
+    - Apply on distributed database system.
+    - All three can be applied when their is no network partition. 
+    - In case of network partition, we have to choose between C (Correct) or A (Always). Choice depends on word gurantee: 
+        - If you want to guarantee the user that this is the most recent update then return error and wait for guarantee.
+        - If you don't want guarantee of the value being the most recent then return the answer as it is.
+    - CA database:
+        - AWS RedShift
+        - MySQL
+    - CP database:  
+        - MongoDB
+        - HBase
+        - Redis
+    - AP database:  
+        - DynamoDB
+        - Casandra
+        - CouchDB
+
+5. ACID:
+    - What is ACID:
+        - ACID transactions are a fundamental concept in database management, providing benefits such as data integrity, consistency, isolation, and durability. They ensure that the database remains in a consistent state even if the server fails. However, they do have limitations and challenges, such as overhead, deadlocks, and scalability problems in distributed systems.
+
+    - Ways to apply ACID:
+        - Single server: Using transactions.
+        - Distributed Systems: Two phase commit, Replication, Sharding, Saga, Multi-Version Concurrency Control 
+
+    - Application Use cases of ACID:    
+        - 
+    - Advantages & Disadvantages:
+
+    - Disadvantages of ACID properties points to use NoSQL database like performance and scalability. ACID transactions are hard to implement in large distributed database systems.
+
+    - How to scale SQL or NoSQL database? and why it is easier to scale NoSQL database?
+
+    - Deciding factors b/w SQL and NoSQL: CAP; ACID properties, BASE, Scaling and performance; Challenges of implementing acid transactions in distributed systems
+
+    - Problems of ACID transactions in distributed system: Network latency, Consistency, Availability and scalability
+
+6. Consistent Hashing:
+    - Functional Req:
+        - Design an algorithm to horizontally scale the cache servers
+        - The algorithm must minimize the occurrence of hotspots in the network
+        - The algorithm must be able to handle internet-scale dynamic load
+        - The algorithm must reuse existing network protocols such as TCP/IP
+
+    - Non-Functional Req:   
+        - Scalable
+        - High availability
+        - Low latency
+        - Reliable
+    
+    -  For high performance of a servers is to keep the spread (Shard) and the load at a minimum.
+
+    - Sharding technique:
+        - Random assignment         -> Access of data is tough.
+        - Single global cache       -> Single point of failure
+        - Key range partitioning    -> Hotspots problem
+        - Static hash partitioning  -> Addition or removal of node is complex
+        - Consistent hashing        -> cascading failure due to hotspots, non-uniform distribution of nodes and data, oblivious to the heterogeneity in the performance of nodes
+
+    - Average number of data inside a node will be k/N.  k is object and N is range of consistent virtual ring.
+
+7. Consistency:
+    - Weak Consistency:
+
+    - Eventual Consistency:
+        - Eventual consistency offers low latency but may reply to read requests with stale data since all nodes of the database may not have the updated data.
+        - Asynchronous synchronization between replicas.
+
+    - Strong consistency:
+        - Strong Consistency offers up-to-date data but at the cost of high latency.
+        - synchronous synchronization between replicas.
+
+    - Tradeoffs of Consistency Patterns
+        The tradeoffs associated with each consistency pattern can be outlined as the following 6:
+
+                        Backups	Leader-Follower	Multi-Leader	2PC	    Paxos
+        Consistency	    Weak	Eventual	    Eventual	    Strong	Strong
+        Transactions    No	    Full	        Local	        Full	Full
+        Latency	        Low	Low	Low	High	High
+        Throughput	    High	High	High	Low	Medium
+        Data Loss	    Lots	Some	Some	None	None
+        Failover	    Down	Read only	Read/Write	Read/Write	Read/Write
+
+8. Fault tolerance:
+    - Fault tolerance describes a system’s ability to handle errors and outages without any loss of functionality.
+    - Normal functioning : you want your application, and by extension the user’s experience, to remain unchanged even if an element of your system fails or is knocked offline.
+    - Graceful degradation : where outages and errors are allowed to impact functionality and degrade the user experience, but not knock the application out entirely.
+    - For fault tolrent:
+        - Multiple node
+        - Multi AZ deployment
+        - Multi Region Deployment
+        - Multi cloud Deployement
+
+9. Databases Types:
+    - Relational database (Prefered when consistency is more important than availability in a horizontally scaled system):  
+        - Structured data
+        - ACID 
+        - where data integrity (correct data) is important
+        - MySQL, Postgres
+    
+    - What database offers:
+        - Mutablitlty
+        - Transaction
+        - Indexes
+        - Access control
+
+    - Key-Value store:
+        - Stores data in key value form.
+        - Provides high scalability, high availability and high throughput.
+        - Redis, DynamoDB
+
+    - Document databse: MongoDB
+    - Wide column database: Casandra
+    - Text Serach database: Elasticserach
+    - Graph database: Amazon Neptune
+    - Blob storage: S3
+    - In memory databse: Redis, Memcache
+    - Time series: Prometheus
+
+10. Database Indexing:
+    - Used for fast seraching
+    - Index is a two column table that have most serach column (for which index is created) and pointer to memory block where actual record is stored.
+    - Indexes will always be sorted.
+    - How indexes works?
+    - How to use Database Indexes Smartly?
+    - Types of index:   
+        - Sparse Index: Each value has entry in index table
+        - Dense Index: Each record has entry in index table
+
+    - Types of Indexing 
+        - Primary Indexing: Database table records are sorted and index column has unique values
+        - Clustered Indexing: Database table records are sorted and index column has repeated values
+        - Secondary Indexing: Databalase table records are not sorted.
+        - Multi-Level Indexing: Create index of index.
+
+    - Data structures used by Indexes: B Tree, Hash tables and bitmaps.
+
+
+11. Database Scaling
+    - Horizontal scaling (Scaling in or scaling out)
+        - Sharding
+            - Each shard of data will be independent.
+            - There will be a shard selector (Proxy). It will select the shard to get the data or write the data
+        - Replication
+            - Master slave: Create only read replicas of database. Whenever there is write request then it will go to master node and then all replicas node will gets updated
+            - Multi Master replica (Active Active): Each node will be treated as master node that will accept read and write both.
+            - Active active geo-location: Per region we will have master node and these will sync each region node.
+            - Full Replication: Full Database Replication occurs when an entire primary database is replicated within every replica instance available.
+            - Partial Replication: Partial replication only mirrors some parts of the data, typically recently updated data. 
+            - Transactional Replication: First take snapshot of primary database, apply the same on replica. After that all the changes to primary copied to replica.
+            - Snapshot Replication: Take snapshot of primary database in timely manner like hourly
+            - Merge Replication: First take snapshot of primary database and create replicas. After that each node can be used for write operation and they will sync each other.
+            - Key-based Replication: This method leverages a replication key to identify, locate and alter only the specific data that has been changed since the last update
+            - Synchronous and Asynchronous Replication: 
+                - Synchronous replication, the data is written in both the primary and the replica at the same time.
+                - Asynchronous replication, on the other hand, only copies data to the replica once the writes have already occurred in the primary. 
+
+    - Vertical scaling (scaling up or down)
+
+
+12. Database Architecture   
+    - Determining the best database for a modern application to be deployed across multiple data centers requires careful evaluation to accommodate a variety of complex application requirements. The database will be responsible for processing reads and writes in multiple geographies, replicating changes among them, and providing the highest possible availability, consistency, and durability guarantees. But not all technology choices are equal. For example, one database technology might provide a higher guarantee of availability while providing lower data consistency and durability guarantees than another technology. The tradeoffs made by an individual database technology will affect the behavior of the application upon which it is built.
+    - Database architecture for multi data center:
+        - Active-Active
+        - Active-Passive (Active-DR)
+    - Database Requirements for Active-Active Applications
+        - Performance
+            - Node failure or Network partition
+            - High latency due to synchronization among multi master nodes
+
+        - Data durability
+            - Conflicting write request for same data at same time at different nodes
+            
+        - Consistency
+
+        - Availability
+
+    - Distributed Database Architectures
+        - Distributed transactions using two-phase commit (Local read and global write)
+        - Multi-Master, sometimes also called "masterless" (Local read and write)
+        - Partitioned (sharded) database with multiple primaries each responsible for a unique partition of the data
+
+    - Database Architecture Comparison
+
+    - MongoDB active-active architecture:
+        - Write concern: The write concern enables the application to specify the number of replica set members that must apply the write before MongoDB acknowledges the write to the application
+        - Read Concern: ReadConcern of majority tells MongoDB to only return data that has been replicated to a majority of nodes in the replica set
+        - maximum staleness value (maxStalenessSeconds): when reading from secondaries, an application can specify a maximum staleness value (maxStalenessSeconds). This ensures that the secondary's replication lag from the primary cannot be greater than the specified duration, and thus, guarantees the currentness of the data being returned by the secondary.
+        - Casual consistency
+    

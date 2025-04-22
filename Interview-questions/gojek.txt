@@ -1,0 +1,103 @@
+SOLID
+Design patterns with code
+Example 
+
+
+
+https://adaickalavan.github.io/portfolio/parking_lot_problem/#gsc.tab=0
+https://github.com/cedrickchee/go-parkinglot/blob/master/internal/printer/printer.go
+https://github.com/hemc4/parking_lot
+https://github.com/agungdwiprasetyo/gojek-parking-lot
+
+
+---------------------------------Project setup
+---------------------------------Makefile
+File handling
+Testing (standard/external)
+Command line argument processing
+Input/Output
+---------------------------------Importing packages (testify)
+---------------------------------Linux environment
+
+
+======================================================================================================================================================================================
+
+Go commands:
+
+go clean
+go get
+go test
+go build
+
+Go packages used:
+
+flag: flag.Parse(), flag.Args(), flag.Args()[0]
+bufio: 
+os
+strings: strings.Split(s)
+
+
+Steps done:
+
+1) Setup Ubuntu 20.04 on WSL
+2) Installed Go, Make, Docker, Docker Compose
+3) Create project root folder and change permission: chmod -R 777 <folder-name>, after login from root user
+4) Initialise git and go module: git init, go mod init GitHub.com/NishantBadlani/<project-name>
+5) 
+
+Understanding existing code base:
+
+1) Readme.md
+2) 
+
+Possible questions:
+
+1) Add unit test cases from scratch
+2) Add new features:
+
+- Add/Update Makefile
+- Run code from a command line or file input
+- 
+
+
+======================================================================================================================================================================================
+
+Focus:
+
+
+=> (Hands-off) Understand
+=> (Hands-off) Think approach for new feature
+
+What can you do? : Exposure/Examples
+
+
+=> (Hands-on) Implement with speed
+=> (Hands-on) Good UT
+
+What can you do? : Syntax memorise (Go code, UT, ), LLD design patterns
+
+
+What's Next ?
+
+Step 1: Ratafication (10:00 AM to 1:00 PM)
+Step 2: Design patterns and example questions (10:00 AM to 1:00 PM)
+
+Step 3: Make 2 projects end-to-end from scratch (2:00 PM to 5:00 PM continuos code)
+Step 4: REST application revise, URL shortner
+
+
+
+
+Target:
+
+1) Add test scripts without help
+2) New question end-to-end
+3) OOPs, SOLID, Design patterns, all ashish question revise
+
+
+
+
+
+
+
+

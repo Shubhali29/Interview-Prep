@@ -1,0 +1,105 @@
+Gojek - Second round
+‐----‐---------------------------------
+1. Past project - Architecture, why you have selected this, your role etc
+2. LLD : 
+        a. Design database of book my show
+        b. Database schema of e-commerce.
+       c. Design an ATM
+
+Main topics 
+1. Projects
+2. LLD
+3. Database
+
+Database schema for a e-commerce app
+Write a backend API project that serves online taxi order creation. There's an API spesification described very detail in the document.
+Design Whatsapp Pay System Design.
+Design a cache system with a switchable cache strategy. Like from LRU to LFU
+Problem solving coding test for pair programming, how you resolve production issue in your experiences
+What is the difference between functional programming and OOP
+
+https://medium.com/@meenakshi_kumari/interview-with-gojek-d56d9f3f1e73
+https://medium.com/@shilpikumari14049/gojek-interview-experience-2f27eb73730a
+
+
+
+-----------------------------------------------------------------------------------------
+
+0. Project           : Why this, why not that ? Error scenarios and their handling ?
+
+{
+	Technical Architecture, Justify tech-stack/design choices, trade-offs, tech-stack used, tech-debts & mitigations, functional and non-functional requirements.bottlenecks and 	edge-cases, and discuss solutions for the same.
+}
+
+Real time notification service using Webhook, under which we have 2 microservice: Webhook management (CRUD), Webhook notification
+
+No restriction, and flexibility for quick changes
+
+1. LL Design
+2. HL Design
+3. DB Design
+4. DSA
+5. API Implementation
+
+BMS:
+
+The system should allow users to view the list of movies playing in different theaters.
+Users should be able to select a movie, theater, and show timing to book tickets.
+The system should display the seating arrangement of the selected show and allow users to choose seats.
+Users should be able to make payments and confirm their booking.
+
+The system should handle concurrent bookings and ensure seat availability is updated in real-time.
+The system should support different types of seats (e.g., normal, premium) and pricing.
+The system should allow theater administrators to add, update, and remove movies, shows, and seating arrangements.
+The system should be scalable to handle a large number of concurrent users and bookings.
+
+
+Search Movie -> Select Movie, Theatre, Timings -> Select Seat -> Make payment
+CRUD on Movies and seating arrangement
+
+
+
+Objects{Fields}(Behaviour):
+
+Main Object{map['Day']=[]Schedule}
+
+Movie{}()
+Theatre{}()
+Schedule{Schedule_Id, Movie_Id, Theatre_Id, Time}()
+Seat{}[]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+harendra.chhekur@stockgro.com

@@ -1,0 +1,9 @@
+Kubernetes:
+
+
+Understand the differences between Services, Deployments, and Pods.
+Learn to use kubectl describe for detailed information.
+Practice using labels and selectors for organizing resources.
+Familiarize yourself with the Kubernetes control plane components like Kube-scheduler, Kube-controller-manager, and etcd.
+
+

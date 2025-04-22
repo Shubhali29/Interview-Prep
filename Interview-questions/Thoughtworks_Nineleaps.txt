@@ -1,0 +1,288 @@
+
+======================================================================================================================================================================================
+----------------------------------------------------------------- Thoughtworks ----------------------------------------------------------------- 
+======================================================================================================================================================================================
+package main
+import "fmt"
+ 
+/*
+ * Complete the 'solution' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts STRING a as parameter.
+ */
+
+func solution(nums []int, target int) []int {
+    
+	res := []int{-1,-1}
+	start := 0
+	end := len(nums)-1
+	binarySerachHelper(nums, start, end, target, &res)
+	return res
+}
+
+func binarySerachHelper(nums []int, start int, end int, target int, res *[]int){
+
+	if start >= end{
+		return 
+	}
+
+	mid := (end-start)/2
+
+	if nums[mid] == target{
+
+		(*res) = append((*res), mid)
+		binarySerachHelper(nums, start, mid-1, target, &res)
+		binarySerachHelper(nums, mid+1, end, target, &res)
+
+		
+
+	}else if nums[mid] < target{
+		binarySerachHelper(nums, mid+1, end, target, &res)
+	}else{
+		binarySerachHelper(nums, start, mid-1, target, &res)
+	}
+}
+
+
+func main() {
+	var n string
+	fmt.Scanf("%s",&n)
+	nums := []int{5,7,7,8,8,8,8,10}
+	target := 8
+
+	result := solution(nums)
+
+	fmt.Printf("%d", result)
+}
+
+
+// Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a given target value.
+
+// If target is not found in the array, return [-1, -1].
+
+// You must write an algorithm with O(log n) runtime complexity.
+
+//  
+
+// Example 1:
+
+// Input: nums = [5,7,7,8,8,8,8,10], target = 8
+
+// Output: [3,6]
+
+// Example 2:
+
+// Input: nums = [5,7,7,8,8,10], target = 6
+
+// Output: [-1,-1]
+
+// Example 3:
+
+// Input: nums = [], target = 0
+
+// Output: [-1,-1]
+
+//  
+
+// Constraints:
+
+// 0 <= nums.length <= 105
+// -109 <= nums[i] <= 109
+// nums is a non-decreasing array.
+// -109 <= target <= 109
+
+
+
+
+// ------ API design --------
+
+// Describe how you would design an API for user authentication, including endpoints for user registration, login, and password reset. What security measures would you implement to protect user credentials and sessions? Provide a brief example of how you would implement JWT (JSON Web Tokens) for authentication.
+
+API : POST /authentication/v1/register 
+    
+    Request Body- 
+	{
+		"name": "",
+		"email": "",
+		"password": ""
+	}
+
+	response: status code 201
+	{
+		"ok"
+	}
+
+API: POST   /authentication/v1/login 
+
+    Request Body
+	{
+		"name": "",
+		"password": "",
+	}
+
+	response:
+	{
+		"auth-token": ""
+	}
+
+API: PUT /authenication/v1/passowedreset - auth-token -
+
+   {
+		"newpassword": ""
+		"oldpassword": ""
+		"name": ""
+   }
+
+   response{
+	 	
+   }
+
+
+
+internal/ 
+   utils/
+   		utils.go
+		utils_test.go
+
+		"testing"
+   		"testify"
+
+		func mockstorage{
+
+			storage.StoreURL("")
+		}
+
+		func TestStrToInt(t *testing.T){
+			mockstorage()
+
+			var input := []struct{
+				name
+				args
+				want string
+				wantError bool
+			}
+				{
+					name: "Test string to int"
+					args: args{
+						input: true
+					}
+					wantError: true
+					want: "Wrong input"
+				}
+			}
+
+			for ()
+
+
+		}
+
+
+======================================================================================================================================================================================
+----------------------------------------------------------------- Nineleaps ----------------------------------------------------------------- 
+======================================================================================================================================================================================
+
+1. Tell me about your most interesting and challenging project. 
+2. What is Goroutine and how its different from thread in other languages. Multiplexing, context switch within go-runtime
+3. What are channels ? Share data between go-routine, synchronisation
+4. Implement: given an array, split this into two halfs and call two goroutine that will sum each half of array and in end return sum of both halfs. 
+5. How to perform error handling in golang. Implement it.
+6. What are interfaces and structure in golang. When to use ease what ?
+7. Write unit test for your created functions.
+8. Create a REST API for Create, Get and PUT 
+9. Pass the method type in payload and then identify which handler I should call.
+10. How to write unit test for an REST API.
+11. Normalization ? 
+12. 2 SQL queries
+13. gRPC and REST
+14. How you deploy your code in your project and who does this.
+
+
+
+
+package main
+
+type Notifier interface{
+	notify() string
+}
+
+func TestStr
+type SMSNotifier struct {
+	contact int
+	message string
+}
+
+func (smsObj *SMSNotifier) notify() string{
+	return "", "Message sent by SMS"
+}
+
+type EmailNotifier struct{
+	from string
+	to string
+	message string
+}
+
+
+func (emailObj *EmailNotifier) notify() string{
+	return "", "Message sent by EMAIL"
+}
+
+
+net/httptest
+net/http
+
+func TestCreateProduct(t *testing.T){
+	
+	req, err := http.NewRequest("GET", "/products", nil)
+	
+	if err != nil{
+	
+	}
+	
+	rr := httptest.NewRecorder()
+	
+	handler := http.HandleFunc(CreateProduct)
+	
+	handler.ServeHTTP(rr, req)
+	
+	if stattus := tt.code; tt.code != http.StatusOK{
+	
+	}
+	
+}
+
+func TestNotifier(t *testing.T) {
+
+	emailObj := &EmailNotifier{}
+	
+	var inputs := []struct{
+		name string
+		args args
+		want string
+	}{
+		
+		{
+			name: "Test Notification"
+			args: args{
+				
+			}
+			want: "Success"
+			
+		}
+	}
+	
+	for
+}
+
+func sendMessage(notifyObj Notifier) string{
+	return notifyObj.notify
+}
+func main(){
+	
+	// Update as per the struct fields
+	smsObj := &SMSNotifier{}
+	
+	sendMessage(smsObj)
+	
+	
+}

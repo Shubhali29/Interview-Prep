@@ -1,0 +1,139 @@
+1) Crosscharge
+
+
+- Charging available and hassle free, countless business agreements and interfaces with various operators need to be put in place
+- 
+
+2) AMS
+
+Project Description:
+
+• EMS faced performance challenges with legacy architecture and complex monolithic setup, impacting scalability and maintainability. 
+
+My Role:
+
+• Re-architected the application to a cloud-native application using containerised Golang microservices and serverless components for company’s new D2C product offering.
+• Achieved peak performance of key API’s under 10 ms with 100000+ concurrent requests with robust application architecture and continuous delivery to support near 0.01% downtime.
+
+{ How did I achieve this (caching, connection pooling, async logging) ? and how did I measure this (QA team) }
+
+• Containerized the application to support easy cross environment deployment and reduced the container image size by nearly 90% with multi-stage build approach.
+
+{Docker revise}
+
+• Developed reusable application utilities including structured/unstructured logging, a database package with Goroutine-based connection pooling, caching, and custom middleware for the entire request-response cycle.
+• Integral part of peer, design and code, reviews.
+
+3) EMS
+
+Project Description:
+
+• Web application to manage Edge devices
+• Distributed + Monolith
+• Tech Stack: Python/Perl, Golang (New Service), Postgres, Nginx
+• Monolithic components: SC, TW, Diagnostic
+• SC : Create the configuration for the edge devices as per input given by user
+• TW : Provides user to add new features and update existing feature of edge device.
+• Diagnostic: For health monitoring of edge devices like checking tunnel status
+• For installation of edge devices platform need some interface to communicate with the EMS for getting latest configuration of the device for that we have implemented a REST API's
+ using which edge devices gets installed.
+• I have worked on SC component in which user submits the request to create the configuration for the device using SC interface then after basic validation of input params request got submit in queue then consumer consumes the request, parse the input, create configuration and store data in database and send response to user. 
+• IPsec Tunnel is secure path between two networks
+• Certificate are digital ID for authentication of edge device
+• In EMS, Mgmt IPSEC Tunnel created between EMS and edge device
+• 
+• 
+
+Project Description
+Components
+My Role: Work on SC, TW, Diagnostics + New Service PKI {Main job is to register the end user with prime key (third party), generate certificates, revoke and delete certificate}
+
+{How will I showcase this? : Implemented asynchronous communication, multiprocessing, and SQL query optimization, reducing latency by 18% and greatly enhancing overall system performance.}
+
+SQL: 
+
+Used tools like EXPLAIN to analyze the performance of slow queries.
+Added indexes to frequently queried columns to speed up data retrieval.
+Refactored complex joins and subqueries to be more efficient.
+
+{
+	Architecture: Distributed + Monolith, same code deployed on all servers
+	Problems: Independent scaling not possible, Feature development cycles were long and complex, DB replica (Master - Master), Excessive opening and closing DB connections
+
+
+} =======> Solution is AMS bcoz D2C
+
+
+My Role:
+
+• Implemented PKI microservice
+• 
+• 
+• 
+• 
+• 
+
+
+Personal background
+Educational BG
+Work BG
+
+
+Goroutines
+
+======================================================================================================================================================================================
+
+Projects and your role
+
+Design: Microservice migration, communication, SQL vs NoSQL, DB design, Zookeeper, 
+Development: Golang Theory, DSA, Development hands on (Concurrency, Interface, REST, JSON conversion, Testing - TDD/BDD, Mocking, Docker, Kafka), LLD / SOLID
+Deployment: 
+
+consensus			
+
+Goroutine vs Threads
+gRPC vs REST
+SQL vs NoSQL
+
+- Structured, has relational properties, ensure data integrity, enforcing data integrity through constraints like foreign keys and indexes
+- Transaction: 
+- Scalability: SQL - vertically preferred, querying will become complex on shared/distributed tables, Transaction mgmt. becomes complex - need to be handled by 2PC, SAGA
+
+=> Cache
+
+Write through, around, back
+Read through
+
+Cache invalidation: LRU, LFU, FIFO, Random Replacement
+
+Decide on the basis of:
+- Consistency
+- Read/Write
+- Latency
+
+
+
+
+
+
+
+
+
+
+# Build stage
+FROM golang:latest AS build
+WORKDIR /unified-broadband
+COPY . .
+RUN go mod tidy
+RUN go mod vendor
+RUN go build -o tcp ./cmd/tcp/
+ 
+# Final stage
+# FROM almalinux:8.8-minimal-20230718
+FROM golang:latest
+WORKDIR /unified-broadband
+COPY --from=build /unified-broadband/configs/common/ ./configs/common/
+COPY --from=build /unified-broadband/tcp .
+ENTRYPOINT [ "./tcp" ]
+LABEL Name=nishant Version=0.0.1
+EXPOSE 8000

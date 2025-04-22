@@ -1,0 +1,35 @@
+Microservices
+
+Topics:
+
+1. Monolith vs Microservice, Pros/Cons of both
+2. Single Components <----------------------> Inf Components, how to decide, Loose Coupling & High Cohesion
+3. Timeouts
+4. Shared DB Patterns: Adv, Disadv, When to use ?
+5. Communication: Sync vs Async
+
+	- Adv/Disadv
+	- Use cases
+
+6. Designing Workflows:
+
+	- Orchestration: Sync Communication
+	- Choreography : Async Communication => Event driven architecture
+	- Common use cases
+
+7. Remote Procedure Calls
+8. REST: Specification stating how we should be communicating with the server like how should input/output be passed/expected from the the server; everything is a resource and how we should structure our resources
+9. Database per service
+10. API Composition Patterns: API Gateway can be used
+
+
+
+FAQs:
+
+1. Adv/Disadv of Loose Coupling & High Cohesion can be always be backup of answering any pros/cons ques of microservices
+2. Application server, DB:
+
+	- Scaling App Server:
+		1. LB + ASG
+		2. Asyn Communication
+	- DB is tough
