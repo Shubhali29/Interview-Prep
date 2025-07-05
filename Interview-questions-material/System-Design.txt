@@ -1,0 +1,7 @@
+Handling Timeouts in Microservice:
+------------------------------------
+1. Add timeouts in service
+2. On timeout return default value
+3. Add retries - service should idempotent, exponential backoff
+4. Add retry only when needed
+5. Rearchitect - remove synchronous Communication
