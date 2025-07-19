@@ -1,0 +1,22 @@
+Interview Questions
+---------------------------
+1. Byte datatype range [0 - 255] (Output based question)
+2. How to perform marshall and unmarshall JSON in Golang?
+3. Create a pub-sub system using Golang.
+4. Difference between slice and array.
+5. How to perform error handling in Golang?
+6. Create a program that will print Ping and Pong alternatively.
+7. What is buffered and non buffered channel. 
+8. Create a consumer and producer in Golang.
+9. Unit testing and BDD in Go.
+10. How to limit number of spinned Go routines.
+11. Generics in Golang
+12. Interface vs Structure. When to use what? 
+13. What is Goroutine and how its different from thread in other languages. Multiplexing, context switch within go-runtime
+14. What are channels ? Share data between go-routine, synchronisation
+15. Implement: given an array, split this into two halfs and call two goroutine that will sum each half of array and in end return sum of both halfs. 
+16. Mutex and wait groups?
+17. Concurrency vs Parallelism? Concurrency patterns.
+18. worker pool in golang
+19. go.mod, go.sum ? How dependency management handled in Golang?
+
