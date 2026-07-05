@@ -1,0 +1,106 @@
+---------
+Golang
+----------
+1. Goroutine
+    - Goroutine lifecycle
+    - Goroutine schedulling
+    - Goroutine starvation
+    - Fan Out/ Fan In pattern
+    - work stealing
+    - GOMAXPROCESS
+2. Channels
+    - Buffered Channels
+    - Unbuffered channels
+    - Channel synchornization
+    - Producer and consumer pattern
+    -  Channel based ownership model
+3. Mutexes
+    - sync.Mutex
+    - Critical sections
+    - Shared state protection
+    - Lock Contention
+4. Wait Groups
+    - Waiting for concurrent operations
+    -  Goroutine synchronization
+5. Context
+    - context.Context
+    - Timeout Handling
+    - Cancellation propogation
+6. Atomic Operations
+    - sync/atomic
+    - compare and swap
+    - lock-free programming
+7. Panic Recovery
+    - panic()
+    - recover()
+    - defer()
+8. Memory management
+    -  Slice Growth
+    - Capacity management
+    - Garbage collection
+    - sync.pool
+9. Maps
+    - Concurrent Map access
+    - Maps synchronization
+10. Interfaces and design
+    - service abstraction
+    - Interface driven design
+11. JWT Handling
+    - JWT parsing
+    - Signature verification
+    - Claims validation
+12. Worker pools
+13. Data structures
+    - Maps
+    - slices
+    - Concurrent access patterns
+
+
+
+-----------------------
+Distributed systems
+-----------------------
+1. Circuit breaker
+2. Rate Limiting
+3. Distributed Cache
+4. Distributed transactions (2PC/SAGA)
+5. Metrics and observability 
+6. JWT based authentication
+
+
+
+--------------------------
+Kubernetes
+--------------------------
+Kubernetes Concepts That an Interviewer Is Actually Testing
+
+If this assessment was for a Backend Engineer / Lead Engineer working on Kubernetes, the hidden topics being tested are:
+
+1. Stateless vs Stateful applications
+2. Horizontal scaling challenges
+3. Shared storage/state management
+4. Redis in Kubernetes
+5. Service resilience
+6. Resource limits and throttling
+7. Distributed rate limiting
+8. Metrics and observability
+9. Microservice communication
+10. Fault tolerance
+11. High availability
+12. Distributed consistency
+13. Distributed transactions
+14. Cloud-native security
+15. Pods & ReplicaSets
+16. Horizontal Pod Autoscaler (HPA)
+17. Resource Requests & Limits
+18. Liveness/Readiness Probes
+19. Service Discovery
+20. Redis on Kubernetes
+21. Distributed Rate Limiting
+22. Prometheus & OpenTelemetry
+23. Circuit Breaker Pattern
+24. Distributed Transactions (2PC/Saga)
+25. High Availability
+26. Stateless vs Stateful Workloads
+27. Kubernetes Networking (Service-to-Service communication)
+28. Fault Tolerance & Resilience

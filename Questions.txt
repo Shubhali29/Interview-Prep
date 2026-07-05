@@ -1,0 +1,61 @@
+[Golang]
+1. A service receives 1000 requests per second and needs to process them concurrently. Which Golang construct should you use?
+2. What is the difference between a buffered and an unbuffered channel?
+3. What problem does a sync.WaitGroup solve?
+4. Multiple goroutines are incrementing a shared counter causing race conditions. Which solution provides the best throughput?
+5. A producer is generating messages faster than consumers can process them.
+
+How would you:
+
+* Prevent memory exhaustion?
+* Prevent goroutine explosion?
+
+6. Explain how Go’s scheduler uses work-stealing.
+
+7. Design a worker pool capable of processing 1 million jobs while limiting concurrency to 100 workers.
+8. Design a lock-free rate limiter using atomic operations.
+9. A service occasionally deadlocks.
+
+Explain:
+
+* How deadlocks occur
+* How to debug them
+* How to prevent them
+
+10. Why does slice growth impact performance?
+11. What does make([]int, 0, 100) do?
+12. When would you use sync.Pool?
+13. Explain how Go’s garbage collector works.
+14. A service experiences GC pauses during peak traffic.
+
+Design an optimization strategy.
+
+
+[Distributed Systems]
+
+1. How would you profile memory leaks in production?
+2. What is a Circuit Breaker?
+3. Why are retries dangerous without backoff?
+4. A downstream API is failing intermittently.Design a resilient communication strategy.
+5. What is eventual consistency?
+6. What are the advantages of asynchronous messaging over synchronous APIs?
+7. Compare:
+
+* Two Phase Commit
+* Saga Pattern
+
+When would you use each?
+
+8. Design a globally distributed counter supporting millions of updates per second.
+9. Design a distributed cache with strong consistency.
+
+
+[Security]
+
+1. What information is typically present inside a JWT?
+2. What is the difference between Authentication and Authorization?
+3. How would you securely validate JWTs in a microservices architecture?
+4. How would you prevent SQL Injection and XSS attacks?
+5. Design an authentication system for 100 microservices running in Kubernetes.
+
+

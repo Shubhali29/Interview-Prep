@@ -1,0 +1,130 @@
+Multiple Questions Answers
+----------------------------
+1. You are developing a microservice application in Golang that communicated with multiple external APIs using Goroutines. During load testing, you obeserve that the application is reaching asaturation point, and some Goroutines are timing out while waiting for API responses. To enhance the resilence and performance of your application, what strategy should you implement?
+Options:
+1. Introduce a circuit breaker pattern to handle API failures gracefully and prevent overload.
+2. Increase number of goroutines to allow more concurrent requests to external APIs
+3. Implement exponential backoff for retries wothout limiting number of concurrent requests
+4. Use a single Goroutine to handle all API requests to simplify error handling.
+
+- Answer : Introduce a circuit breaker pattern to handle API failures gracefully and prevent overload.
+
+2. In Golang application designed for processing large datasets concurrently, you notice that some Goroutines are being starved for CPU time due to others hogging resources. This is causing significant delays in data processing. What advanced technique can you implement to ensure fair scheduling and resource allocation among Goroutines?
+
+Options:
+
+1. Use a work-stealing algorithm to balance the load across Goroutines dynamically.
+2. Set CPU affinity for each Goroutine to bind them to specific cores.
+3. Introduce a priority queue to manage the execution order of Goroutines based on their workloads.
+4. Limit the number of Goroutines that can run concurrently to avoid resource contention.
+
+- Answer :     Use a work-stealing algorithm to balance the load across Goroutines dynamically.
+
+3. You are tasked with optimizing a cloud-native Golang application that uses  multiple Goroutines to process data from a high traffic stream. During peak hours, you notice that some Goroutines are blocked waiting for data to be consumed from a channel, leading to increased latency. What architectural adjustment would you make to improve the throughput of data processing?
+Options:
+
+1. Implement a buffered channel to allow goroutines to continue processing while data is being consumed.
+2. Switch to mutex locks around the data processing logic.
+3. Scale up the number of goroutines to match the incoming data rate more closely.
+4. Refactor to use a single goroutine for processing.
+
+- Answer:     Implement a buffered channel to allow goroutines to continue processing while data is being consumed.
+
+
+4. During review of a Golang application using a Counter struct for tracking real-time user interactions, you discover that the counter becomes a bottleneck under heavy load due to locking mechanisms. What advanced optimization technique can you employ to enhance the performance of the counter while maintaing accuracy?
+Options:
+
+1. Switch to a lock-free algorithm such as Compare-And-Swap (CAS) for incrementing the counter.
+2. Increase the frequency of locking.
+3. Use a single global counter instead of multiple counters.
+4. Implement a read-write lock.
+
+- Answer:     Switch to a lock-free algorithm such as Compare-And-Swap (CAS) for incrementing the counter.
+
+5. In your cloud-native Golang application, you have implemented a Counter struct to track number of API calls accross multiple microservice in K8s. After developing a new version, you notice that there are discrepancies in the counts due to the way instances handle state. What is the best approch to ensure that the Counter remain consistent accross all instances?
+Options:
+
+1. Implement an event sourcing pattern to capture all changes to the counter and replay events for consistency.
+2. Use a database-backed Counter that writes changes to a shared datastore for synchronization.
+3. Adopt a distributed locking mechanism to ensure only one instance can update the counter at a time.
+4. Rely on local instance counters and periodically aggregate counts using a batch job.
+
+- Answer: Use a database-backed Counter that writes changes to a shared datastore for synchronization.
+
+6. As a Golang developer responsible for a microservice architecture in K8s, you need to implement a Counter struct that aggregates metrics from multiple services, However, you find that network latency is causing delays in metric collection, leading to inconsistent data. Which architectural pattern would best address this issue while ensuring timely and accurate metric aggregation?
+Options:
+
+1. Implement a centralized metrics collector that uses a message broker to aggregate counts asynchronously.
+2. Utilize a distributed caching layer to store counts temporarily before final aggregation.
+3. Design the Counter struct to perform synchronous updates directly to a database after each request.
+4. Incorporate a polling mechanism that requests counts from each service at regular intervals.
+
+- Answer: Implement a centralized metrics collector that uses a message broker to aggregate counts asynchronously.
+
+7. You are tasked with optimizing a Golang application that experiences frequent panics due to resource exhaustion during peak loads, The application performs heavy computations on large datasets. What proactive measure should you implement to manage resource usage effectively and reduce the risk of panics?
+Options:
+
+1. Implement rate limiting to control the number of concurrent requests.
+2. Switch to a more efficient algorithm that reduces memory usage.
+3. Increase the allocated memory limits in the Kubernetes deployment configuration.
+4. Implement background processing to offload heavy computations.
+
+- Answer: Implement rate limiting to control the number of concurrent requests.
+
+
+8. You are responsible for a Golang service that interfaces with a third party data provider. Recently, you noticed that panics occur when the response data structure chnages unexpectedly, leading to application crashes. What architectural change should you implement to ensure that your service can handle such changes gracefully without crashing?
+Options:
+
+1. Implement a strict schema validation for incoming data to prevent panics.
+2. Wrap all data processing code in a deferred recovery function to catch panics.
+3. Add logging to track changes in response data structure.
+4. Use a switch statement to handle different response formats explicitly.
+
+- Answer: Implement a strict schema validation for incoming data to prevent panics.
+
+9. In your k8s deployed Golang app, you have implemented multiple goroutines to handle incoming requests concurrently. However, you discover that panics are occuring due to shared state being accessed without proper locking. what is most effective strategy to prevent these panis in a concurrent environment?
+Options:
+
+1. Use mutexes or channels to synchronize access to the shared state.
+2. Increase the number of goroutines.
+3. Disable panic recovery.
+4. Use global variables instead of passing state.
+
+- Answer: Use mutexes or channels to synchronize access to the shared state.
+
+10. You are responsible for optimizing a Golang microservice that processes user data stored in slices. During peak loads, you have obeserved that slices grow too frequently, leading to increased garbage collection times and latency. What  advacned technique can you implement to manage slice growth and minimize performance impacts?
+
+Options:
+
+1. Implement a fixed-size array to replace slices entirely.
+2. Use a custom buffer pool to manage slice allocations and reusability.
+3. Increase the initial capacity of the slices to match the maximum expected load.
+4. Switch to a map implementation for all data storage needs.
+
+- Answer: Use a custom buffer pool to manage slice allocations and reusability.
+
+11. In a cloud native Golang application, you discover that slices storing user input are vulnerable to injection attacks due to inadequate sanitizarion. As part of the security team, you are tasked with implementating a robust input validation framework. Which approch would effectively secure the slice data while ensuring minimal disruption to the existing application flow?
+
+Options:
+
+1. Utilize a middleware layer to sanitize inputs before they reach the application logic.
+2. Implement strict type assertions on the slices to prevent injection.
+3. Employ a third-party library that provides automatic input sanitization for all user inputs.
+4. Adopt a whitelist validation approach where only known safe inputs are allowed to be stored in the slices.
+
+- Answer: Utilize a middleware layer to sanitize inputs before they reach the application logic.
+
+12.  During a performance review of a Golang application deployed on K8s, you identify that slices used for storing session data encounter race conditions due to concurrent writes from multiple goroutines. As a senior dev, what is the most effective synchronization mechanism you would implement to ensure data integrity while maintaining high throughput?
+Options:
+
+1. Use a mutex to lock the slice during write operations.
+2. Implement a channel-based architecture to serialize access to the slice.
+3. Utilize the atomic package to manage concurrent writes to the slice.
+4. Switch to using a concurrent map to replace the slices altogether.
+
+- Answer: Implement a channel-based architecture to serialize access to the slice.
+
+
+
+
+
